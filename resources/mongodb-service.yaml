@@ -11,20 +11,25 @@ spec:
   clusterIP: None
   selector:
     role: mongo
+    app: mongodb
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongod
 spec:
   serviceName: mongodb-service
   replicas: 3
+  selector:
+    matchLabels:
+      app: mongodb
   template:
     metadata:
       labels:
         role: mongo
         environment: test
         replicaset: MainRepSet
+        app: mongodb
     spec:
       affinity:
         podAntiAffinity:
