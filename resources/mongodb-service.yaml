@@ -8,7 +8,8 @@ spec:
   ports:
   - port: 27017
     targetPort: 27017
-  clusterIP: None
+    protocol: TCP
+  type: ClusterIP
   selector:
     role: mongo
     app: mongodb
